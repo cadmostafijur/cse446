@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Missing Persons Management</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/truffle-contract@4.0.31/dist/truffle-contract.min.js"></script>
+</head>
+<body>
+  <div class="container mt-4">
+    <h2 class="mb-4">Missing Persons Management System</h2>
+    <button id="connectWalletBtn" class="btn btn-primary mb-3">Connect Wallet</button>
+    <p id="accountAddress" class="mb-4 text-muted">No Wallet Connected</p>
+
+    <!-- Registration -->
+    <div class="card p-4 mb-4">
+      <h4>Register</h4>
+      <form id="registrationForm">
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select class="form-control" id="role">
+            <option value="1">Admin</option>
+            <option value="2" selected>Reporter</option>
+            <option value="3">Investigator</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="nid">NID</label>
+          <input type="text" class="form-control" id="nid" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" class="form-control" id="name" required>
+        </div>
+        <button type="submit" class="btn btn-success">Register</button>
+        <div id="registerMessage" class="mt-3"></div>
+      </form>
+    </div>
+
+    <!-- Add Missing Person -->
+    <div id="missingPersonSection" class="card p-4 mb-4" style="display:none;">
+      <h4>Report Missing Person</h4>
+      <form id="missingPersonForm">
+        <div class="form-group"><input type="text" id="mpName" class="form-control" placeholder="Name" required></div>
+        <div class="form-group"><input type="number" id="mpAge" class="form-control" placeholder="Age" required></div>
+        <div class="form-group"><input type="number" id="mpHeight" class="form-control" placeholder="Height (cm)" required></div>
+        <div class="form-group"><textarea id="mpDescription" class="form-control" placeholder="Description" required></textarea></div>
+        <div class="form-group"><input type="text" id="mpLastSeenLocation" class="form-control" placeholder="Last Seen Location" required></div>
+        <div class="form-group"><input type="text" id="mpRelativeContact" class="form-control" placeholder="Relative Contact" required></div>
+        <button type="submit" class="btn btn-warning">Submit Report</button>
+        <div id="mpMessage" class="mt-3"></div>
+      </form>
+    </div>
+
+    <!-- Update Status -->
+    <div id="updateStatusSection" class="card p-4 mb-4" style="display:none;">
+      <h4>Update Missing Person Status (Admin)</h4>
+      <form id="updateStatusForm">
+        <div class="form-group">
+          <input type="number" id="statusPersonId" class="form-control" placeholder="Person ID" required>
+        </div>
+        <div class="form-group">
+          <input type="text" id="newStatus" class="form-control" placeholder="New Status (e.g., found, searching)" required>
+        </div>
+        <button type="submit" class="btn btn-info">Update Status</button>
+      </form>
+    </div>
+
+    <!-- List of Missing Persons -->
+    <div>
+      <h4>Missing Persons List</h4>
+      <div id="missingPersonsList"></div>
+    </div>
+  </div>
+
+
+  <!-- Scripts -->
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
