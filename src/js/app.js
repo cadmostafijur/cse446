@@ -41,7 +41,6 @@ App = {
   
 
   initContract: async function () {
-    const res = await fetch('MissingPersonsManagement.json');
     const contractData = await res.json();
 
     App.contracts.MissingPersonsManagement = TruffleContract(contractData);
@@ -53,20 +52,7 @@ App = {
 
   },
 
-  bindEvents: function () {
-    document.getElementById('registrationForm').addEventListener('submit', App.handleRegisterUser);
 
-    document.getElementById('missingPersonForm')?.addEventListener('submit', App.handleAddMissingPerson);
-
-    document.getElementById('updateStatusForm')?.addEventListener('submit', App.handleUpdateStatus);
-
-    document.getElementById('connectWalletBtn')?.addEventListener('click', App.connectWallet);
-
-    document.getElementById('viewAllSchedules')?.addEventListener('click', App.viewAllSchedules);
-    document.getElementById('assignForm')?.addEventListener('submit', App.handleAssignInvestigator);
-
-
-  },
   connectWallet: async function () {
     try {
       const accounts = await App.webProvider.request({ method: 'eth_requestAccounts' });
